@@ -27,7 +27,7 @@ class StageToRedshiftOperator(BaseOperator):
     def execute(self, context):
         self.log.info(f'Staging phase start to table: {self.table}')
         aws_hook = AwsHook(self.aws_conn_id)
-        credentials = aws.hook.get_credentials()
+        credentials = aws_hook.get_credentials()
         redshift_hook = PostgresHook(self.redshift_conn_id)
         redshift_hook.run(
             SqlQueries.truncate_table.format(self.table)
