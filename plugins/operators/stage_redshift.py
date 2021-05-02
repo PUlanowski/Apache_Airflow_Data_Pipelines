@@ -2,6 +2,7 @@ from airflow.contrib.hooks.aws_hook import AwsHook
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
+from helpers import SqlQueries
 
 class StageToRedshiftOperator(BaseOperator):
     ui_color = '#358140'
@@ -10,7 +11,7 @@ class StageToRedshiftOperator(BaseOperator):
     def __init__(self,
                  redshift_conn_id = 'redshift',
                  aws_conn_id = 'aws_credentials',
-                 table = 'staging_table',
+                 table = 'dummy_table',
                  file_type ='json',
                  source ='',
                  json_path = '',
