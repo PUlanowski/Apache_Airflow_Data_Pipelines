@@ -1,4 +1,18 @@
 class SqlQueries:
+
+    truncate_table = ("""
+        TRUNCATE {}    
+    """)
+
+    copy_tables_to_stage = ("""
+        COPY {}
+        FROM '{}'
+        ACCESS_KEY_ID '{}'
+        SECRET_ACCESS_KEY '{}'
+        json '{}'
+    """)
+
+
     songplay_table_insert = ("""
         SELECT
                 md5(events.sessionid || events.start_time) songplay_id,
@@ -39,4 +53,24 @@ class SqlQueries:
         SELECT start_time, extract(hour from start_time), extract(day from start_time), extract(week from start_time), 
                extract(month from start_time), extract(year from start_time), extract(dayofweek from start_time)
         FROM songplays
+    """)
+
+    count_songs_table = ("""
+    SELECT COUNT(*) FROM songs
+    """)
+
+    count_artists_table = ("""
+    SELECT COUNT(*) FROM artists
+    """)
+
+    count_users_table = ("""
+    SELECT COUNT(*) FROM users
+    """)
+
+    count_time_table = ("""
+    SELECT COUNT(*) FROM time
+    """)
+
+    count_songplays_table = ("""
+    SELECT COUNT(*) FROM songplays
     """)
