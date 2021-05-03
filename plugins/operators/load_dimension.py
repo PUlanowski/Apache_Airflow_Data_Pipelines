@@ -26,7 +26,7 @@ class LoadDimensionOperator(BaseOperator):
         redshift_hook = PostgresHook(self.redshift_conn_id)
         if self.truncate == True:
             redshift_hook.run(
-                SqlQueries.truncate_table.format(self.table)
+                SqlQueries.truncate_table.format(self.target_table)
             )
         redshift_hook.run(self.sql)
         self.log.info(f'Loading phase finished to dimension table: {self.target_table}')

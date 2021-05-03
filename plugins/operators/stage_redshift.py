@@ -13,7 +13,8 @@ class StageToRedshiftOperator(BaseOperator):
                  aws_conn_id = 'aws_credentials',
                  table = 'dummy_table',
                  file_type ='json',
-                 source ='',
+                 s3_bucket ='',
+                 s3_key = '',
                  json_path = '',
                  *args, **kwargs):
 
@@ -21,8 +22,9 @@ class StageToRedshiftOperator(BaseOperator):
         self.redshift_conn_id = redshift_conn_id
         self.aws_conn_id = aws_conn_id
         self.table = table
-        self.source = source
         self.file_type = file_type
+        self.s3_bucket = s3_bucket
+        self.s3_key = s3_key
         self.json_path = json_path
 
     def execute(self, context):
@@ -36,7 +38,8 @@ class StageToRedshiftOperator(BaseOperator):
         redshift_hook.run(
             SqlQueries.copy_tables_to_stage.format(
                 self.table,
-                self.source,
+                self.s3_bucket,
+                self.s3_key,
                 credentials.access_key,
                 credentials.secret_key,
                 self.json_path

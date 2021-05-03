@@ -1,15 +1,18 @@
 class SqlQueries:
 
     truncate_table = ("""
-        TRUNCATE {}    
+        TRUNCATE TABLE {}    
     """)
 
     copy_tables_to_stage = ("""
         COPY {}
-        FROM '{}'
+        FROM 's3://{}/{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        json '{}'
+        REGION 'us-west-2'
+        JSON '{}'
+        COMPUPDATE OFF
+        TIMEFORMAT as 'epochmillisecs'     
     """)
 
 
