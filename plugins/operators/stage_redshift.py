@@ -28,6 +28,11 @@ class StageToRedshiftOperator(BaseOperator):
         self.json_path = json_path
 
     def execute(self, context):
+        """
+        This operatior takes data from S3 storage and put it into staging tables which from it's parsed to target tables.
+        :param context: specified above
+        :return: staging tables
+        """
         self.log.info(f'Staging phase start to table: {self.table}')
         aws_hook = AwsHook(self.aws_conn_id)
         credentials = aws_hook.get_credentials()

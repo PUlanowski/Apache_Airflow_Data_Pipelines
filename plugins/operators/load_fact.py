@@ -19,6 +19,11 @@ class LoadFactOperator(BaseOperator):
         self.target_table = target_table
 
     def execute(self, context):
+        """
+        This function is an operator which loads fact tables
+        :param context: specified above
+        :return: fact tables
+        """
         self.log.info(f'Loading phase start to fact table: {self.target_table}')
         redshift_hook = PostgresHook(self.redshift_conn_id)
         redshift_hook.run(self.sql)

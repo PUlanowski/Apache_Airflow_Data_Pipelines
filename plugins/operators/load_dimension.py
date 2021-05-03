@@ -8,6 +8,7 @@ class LoadDimensionOperator(BaseOperator):
     ui_color = '#80BD9E'
 
     @apply_defaults
+
     def __init__(self,
                  redshift_conn_id = 'redshift',
                  sql = '',
@@ -22,6 +23,11 @@ class LoadDimensionOperator(BaseOperator):
         self.truncate = truncate
 
     def execute(self, context):
+        """
+        This function is an operator which loads dimension tables
+        :param context: specified above
+        :return: dimensions tables
+        """
         self.log.info(f'Loading phase start to dimension table: {self.target_table}')
         redshift_hook = PostgresHook(self.redshift_conn_id)
         if self.truncate == True:

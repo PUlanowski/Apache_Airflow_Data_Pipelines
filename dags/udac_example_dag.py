@@ -22,7 +22,7 @@ default_args = {
 dag = DAG('udac_example_dag',
           default_args = default_args,
           description = 'Load and transform data in Redshift with Airflow',
-          schedule_interval='0 * * * *'
+          schedule_interval='@once'
         )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
@@ -101,13 +101,6 @@ run_quality_checks = DataQualityOperator(
     task_id='Run_data_quality_checks',
     dag=dag,
     redshift_comnn_id='redshift',
-    sql_test = [
-        SqlQueries.count_songs_table,
-        SqlQueries.count_users_table,
-        SqlQueries.count_artists_table,
-        SqlQueries.count_time_table,
-        SqlQueries.count_songplays_table,
-    ]
 )
 
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
