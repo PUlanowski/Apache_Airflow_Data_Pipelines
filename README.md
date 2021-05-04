@@ -16,12 +16,12 @@ Scope for this project is to prepare automated data pipeline that follow couple 
 6. Perform quality checks of process
 
 <u>Notes and assumptions:</u>
-1. In original project were using whole massive dataset for song staging but for efficiency sake only one catalog is used. To amend it change in udac_example.dag.py line 50 from <br/>    s3_key = 'song_data/A/A/A'
-<br/>to<br/>
+1. In this project is using massive dataset for song staging but for efficiency’s sake it can be chang in udac_example.dag.py line 50 to <br/>    s3_key = 'song_data/A/A/A'
+<br/>from original<br/>
 s3_key = 'song_data'
    
-2. Schedule interval was changed to run once for testing purposes. To back to original please amend it change in udac_example.dag.py line 25 from <br/>schedule_interval='@once'
-<br/>to<br/>
+2. Schedule interval was changed to run once each hour. For only one test run please amend it change in udac_example.dag.py line 25 to <br/>schedule_interval='@once'
+<br/>from<br/>
 schedule_interval='0 * * * *'
    
 ## Airflow flow
