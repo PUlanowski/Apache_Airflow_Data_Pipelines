@@ -31,4 +31,3 @@ class DataQualityOperator(BaseOperator):
             else:
                 self.log.info(f'records present running: {self.sql_test}')
                 raise ValueError("ValueError exception thrown")
-
